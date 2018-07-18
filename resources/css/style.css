@@ -1,0 +1,104 @@
+/* Default styles */
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+html,
+body{
+  font-family: raleway, "helvetica neue", arial, sans-serif;
+  font-size: 16px;
+  background-color: beige;
+}
+header{
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    height: 3rem;
+}
+.brand,
+.top-links{
+    margin: 0 1.5rem;
+    flex-basis: 50%;
+    line-height: 3rem;
+}
+
+.brand{
+    font-size: 1.75rem;
+    font-weight: 700;
+/*    text-transform: uppercase;*/
+}
+.brand p span{
+    color: #a4afc1;
+    color: #8b5344;       
+    font-weight: 100;
+}
+
+
+.top-links nav ul{
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    text-transform: capitalize;
+}
+.top-links nav ul li{
+    flex-basis: 4rem;
+    text-align: center;
+}
+.top-links nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem;
+}
+.top-links nav ul li a:hover{
+/*    text-decoration: underline;*/
+/*    background-color: #464d5b;*/
+    background-color: #8b5344;
+    color: #fff;
+    border-bottom: solid 1px #fff;
+}
+.active{
+    background-color: #8b5344;
+}
+/* Home Page Styles */
+#content{
+    text-align: center;
+    color: #fff;
+}
+#content .inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../images/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 50rem;
+    padding: 1rem;
+}
+#content .inner h1{
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+#content .inner p{
+    font-size: 1.75rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+#content .inner a{
+/*    background-color: #a4afc1;*/
+    background-color: #8b5344;       
+    width: 10rem;
+    padding: 0.75rem;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+#content .inner a:hover{
+    background-color: #464d5b;
+/*    border-bottom: solid 1px #fff;*/
+}
+/* Upload Page Styles */
