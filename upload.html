@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Upload Resume</title>
+  <link rel="stylesheet" href="./resources/css/style.css">
+
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.279.1.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <div class="brand">
+      <p>resume<span>collect</span></p>
+    </div>
+    <div class="top-links">
+      <nav>
+        <ul>
+          <li><a href="./index.html">home</a></li>
+          <li><a class="active" href="./upload.html">upload</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section id="content-upload">
+    <div class="inner">
+      <h1>Upload Resume</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+          Select image to upload:
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="submit" value="Upload Image" name="submit">
+      </form>
+    </div>
+  </section>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var bucketName = 'resume-upload-072018';
+        var bucketRegion = 'us-east-1';
+        var IdentityPoolId = 'us-east-1:25fb4ad7-430d-4e60-aa10-24acb253e4e9';
+
+        AWS.config.update({
+            region: bucketRegion,
+            credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: IdentityPoolId
+            })
+        });
+
+        var s3 = new AWS.S3({
+            apiVersion: '2006-03-01',
+            params: {Bucket: bucketName}
+        });
+
+        $('form').submit(function(e){
+            e.preventDefault()
+
+            s3.upload({
+                Bucket: 'resume-upload-072018',
+                Key: $('#fileToUpload')[0].files[0].name,
+                Body: $('#fileToUpload')[0].files[0]
+            }, function(err, data) {
+                if (err) {
+                  return alert('There was an error uploading your photo: ', err.message);
+                }
+                console.log('Successfully uploaded photo.');
+            });
+        })
+    })
+</script>
+</body>
+</html>
